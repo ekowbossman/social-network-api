@@ -1,0 +1,26 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "1. [Description](#description)\r 2. [User Story](#user-story)\r 3. [Acceptance Criteria](#acceptance-criteria)\r 4. [Installation](#installation)\r 5. [Testing](#testing)\r 6. [Usage](#usage)\r 7. [Contibuting](#contibuting)\r 8. [Questions](#questions)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekowbossman/social-network-api.git"
+  },
+  "author": "Bossman Quansah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ekowbossman/social-network-api/issues"
+  },
+  "homepage": "https://github.com/ekowbossman/social-network-api#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.5.2",
+    "nodemon": "^2.0.19"
+  }
+}
