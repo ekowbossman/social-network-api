@@ -35,14 +35,10 @@ npm install
 
 ##### Testing 
 No current testing
-##### Usage
-💻
+##### Screenshots 
+![alt text](./assets/ScoailAPI.jpg)
+![alt text](./assets/SocialApi2.jpg)
 
-npm start
-
-With Nodemon:
-
-npm run watch
 
 ###### Contributing
 Bossman Quansah
