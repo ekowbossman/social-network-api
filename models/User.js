@@ -1,48 +1,38 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+//const moment = require('moment');
+const opt = { toJSON: { virtuals: true, getters: true, id: false} };
 
-const UserSchema = new Schema(
-  {
-    username: {
-      type: String,
-      unique: true,
-      required: true,
-      trim: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: [/^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/]
-    },
-    thoughts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Thought'
-      }
-    ],
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    ]
+//const Thought = require('../models/thought');
+
+const userSchema = new Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+    trimmed: true
   },
-  {
-    toJSON: {
-      virtuals: true,
-      getters: true
-    },
-    // prevents virtuals from creating duplicate of _id as `id`
-    id: false
-  }
-);
-
-// get total count of friends on retrieval
-UserSchema.virtual('friendCount').get(function() {
-  return this.friends.length
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    match: [
+      /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+    ] 
+  },
+  thoughts: // one to many relationship
+    [{type: Schema.Types.ObjectId,
+      ref: 'Thought'
+  }], 
+  friends: // one to many relationship
+    [{type: Schema.Types.ObjectId, 
+      ref: 'User'
+    }], 
+}, opt );
+const User = model('User', userSchema);
+// creates virtual to retrieve length of users friends
+userSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
 });
 
-const User = model('User', UserSchema);
 
 module.exports = User;
