@@ -1,21 +1,33 @@
+// Require express and mongoose
 const express = require('express');
+const db = require('./config/connection');
+const routes = require('./routes');
 const mongoose = require('mongoose');
+
+// const cwd = process.cwd();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-api', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+app.use((req, res, next) => {
+    console.log(`${req.method} requested on endpoint ${req.path}`);
+    next();
 });
 
-// Use this to log mongo queries being executed!
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(routes);
+
+// app.use(express.static('public'));
+
+// Log mongoose queries
 mongoose.set('debug', true);
 
-app.use(require('./routes'));
+// app.listen(PORT, () => console.log(`Now connected on localhost:${PORT} `));
 
-app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
+db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`API server running on localhost:${PORT}!`);
+    });
+  });
