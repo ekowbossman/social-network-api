@@ -35,9 +35,8 @@ npm install
 
 ##### Testing 
 No current testing
-##### Screenshots 
-![alt text](./assets/ScoailAPI.jpg)
-![alt text](./assets/SocialApi2.jpg)
+##### workthrought  
+https://drive.google.com/file/d/1FWry6ngF31Greqm2HJg2D5PkPefBHPly/view
 
 
 ###### Contributing
